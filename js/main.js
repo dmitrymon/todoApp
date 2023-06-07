@@ -7,6 +7,8 @@ form.addEventListener('submit', addTask);
 
 tasksList.addEventListener('click', deleteTask);
 
+tasksList.addEventListener('click', doneTask);
+
 function addTask(e) {
     e.preventDefault();
 
@@ -39,5 +41,13 @@ function deleteTask(e) {
     }
     if (tasksList.children.length === 1) {
         emptyList.classList.remove('none');
+    }
+};
+
+function doneTask(e) {
+    if (e.target.dataset.action === 'done') {
+        const parentNode = e.target.closest('.list-group-item');
+        const taskTitle = parentNode.querySelector('.task-title');
+        taskTitle.classList.toggle('task-title--done');
     }
 };
