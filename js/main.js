@@ -4,9 +4,7 @@ const tasksList = document.querySelector('#tasksList');
 const emptyList = document.querySelector('#emptyList');
 
 form.addEventListener('submit', addTask);
-
 tasksList.addEventListener('click', deleteTask);
-
 tasksList.addEventListener('click', doneTask);
 
 function addTask(e) {
@@ -35,19 +33,20 @@ function addTask(e) {
 };
 
 function deleteTask(e) {
-    if (e.target.dataset.action === 'delete') {
-        const parentNode = e.target.closest('.list-group-item');
-        parentNode.remove();
-    }
+    if (e.target.dataset.action !== 'delete') return;
+
+    const parentNode = e.target.closest('.list-group-item');
+    parentNode.remove();
+
     if (tasksList.children.length === 1) {
         emptyList.classList.remove('none');
     }
 };
 
 function doneTask(e) {
-    if (e.target.dataset.action === 'done') {
-        const parentNode = e.target.closest('.list-group-item');
-        const taskTitle = parentNode.querySelector('.task-title');
-        taskTitle.classList.toggle('task-title--done');
-    }
+    if (e.target.dataset.action !== 'done') return;
+
+    const parentNode = e.target.closest('.list-group-item');
+    const taskTitle = parentNode.querySelector('.task-title');
+    taskTitle.classList.toggle('task-title--done');
 };
