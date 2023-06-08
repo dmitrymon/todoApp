@@ -51,7 +51,8 @@ function deleteTask(e) {
     const parentNode = e.target.closest('.list-group-item');
 
     const id = Number(parentNode.id);
-    const index = tasks.findIndex((task) => task.id === id);
+    // const index = tasks.findIndex((task) => task.id === id);
+    tasks = tasks.filter((task) => task.id !== id);
 
     tasks.splice(index, 1)
 
