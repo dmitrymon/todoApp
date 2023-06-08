@@ -67,6 +67,13 @@ function doneTask(e) {
     if (e.target.dataset.action !== 'done') return;
 
     const parentNode = e.target.closest('.list-group-item');
+
+    const id = Number(parentNode.id);
+
+    const task = tasks.find((task) => task.id === id);
+
+    task.done = !task.done;
+
     const taskTitle = parentNode.querySelector('.task-title');
     taskTitle.classList.toggle('task-title--done');
 };
