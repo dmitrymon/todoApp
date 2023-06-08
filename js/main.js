@@ -22,7 +22,6 @@ function addTask(e) {
 
     tasks.push(newTask);
 
-    console.log('tasks', tasks);
     const cssClass = newTask.done ? 'task-title task-title--done' : 'task-title';
 
     const taskHTML = `<li id="${newTask.id}" class="list-group-item d-flex justify-content-between task-item">
@@ -50,6 +49,12 @@ function deleteTask(e) {
     if (e.target.dataset.action !== 'delete') return;
 
     const parentNode = e.target.closest('.list-group-item');
+
+    const id = Number(parentNode.id);
+    const index = tasks.findIndex((task) => task.id === id);
+
+    tasks.splice(index, 1)
+
     parentNode.remove();
 
     if (tasksList.children.length === 1) {
